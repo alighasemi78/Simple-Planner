@@ -1,2 +1,2 @@
-
+path_planner
 -DCATKIN_DEVEL_PREFIX=/home/hesan78/Documents/Simple-Planner/devel -DCMAKE_INSTALL_PREFIX=/home/hesan78/Documents/Simple-Planner/install -G Unix Makefiles

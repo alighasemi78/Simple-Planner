@@ -1,0 +1,8 @@
+prefix=/home/hesan78/Documents/Simple-Planner/devel
+
+Name: path_planner
+Description: Description of path_planner
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

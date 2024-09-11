@@ -131,6 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/hesan78/Documents/Simple-Planner/build/gtest/cmake_install.cmake")
+  include("/home/hesan78/Documents/Simple-Planner/build/path_planner/cmake_install.cmake")
 
 endif()
 
