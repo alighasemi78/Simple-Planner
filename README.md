@@ -11,3 +11,13 @@ To create the workspace, we first need to create a `src` folder and the calling 
 ```
 convert diag_map.png -background black -alpha remove -alpha off diag_map_clean.png
 ```
+
+In order to create a node that handles the path planning algorithm, we need to create a package by calling this command inside the `src` folder:
+
+```
+catkin_create_pkg path_planner roscpp nav_msgs geometry_msgs
+```
+
+This creates a package named `path_planner` which depends on `roscpp`, `nav_msgs`, and `geometry_msgs`.
+
+Now we can make the node `path_planner_node.cpp` inside the `src` folder of the created package.
