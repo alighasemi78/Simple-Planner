@@ -77,6 +77,44 @@ bool isValid(int x, int y) {
     return x >= 0 && x < global_map->info.width && y >= 0 && y < global_map->info.height && global_map->data[index] == 0;
 }
 
+std::vector<std::vector<float>> computeObstacleDistances() {
+    std::vector<std::vector<float>> distances(global_map->info.height, std::vector<float>(global_map->info.width, std::numeric_limits<float>::infinity()));
+
+    std::queue<std::pair<int, int>> q;
+
+    for (int y = 0; y < global_map->info.height; ++y) {
+        for (int x = 0; x < global_map->info.width; ++x) {
+            int index = y * global_map->info.width + x;
+            if (global_map->data[index] == 100) {
+                distances[y][x] = 0;
+                q.push({x, y});
+            }
+        }
+    }
+
+    std::vector<std::pair<int, int>> directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+    
+    while (!q.empty()) {
+        auto [x, y] = q.front();
+        q.pop();
+
+        for (const auto& dir : directions) {
+            int newX = x + dir.first;
+            int newY = y + dir.second;
+
+            if (isValid(newX, newY)) {
+                float newDist = distances[y][x] + 1;
+                if (newDist < distances[newY][newX]) {
+                    distances[newY][newX] = newDist;
+                    q.push({newX, newY});
+                }
+            }
+        }
+    }
+
+    return distances;
+}
+
 void reconstructPath(int startX, int startY, int goalX, int goalY,
                      const std::vector<std::vector<int>>& parentX,
                      const std::vector<std::vector<int>>& parentY,
@@ -124,6 +162,8 @@ void reconstructPath(int startX, int startY, int goalX, int goalY,
 }
 
 void AStarSearch(int startX, int startY, int goalX, int goalY, ros::Publisher& path_pub) {
+    std::vector<std::vector<float>> obstacleDistances = computeObstacleDistances();
+
     std::priority_queue<Node> openList;
     std::vector<std::vector<bool>> closedList(global_map->info.height, std::vector<bool>(global_map->info.width, false));
     std::vector<std::vector<int>> parentX(global_map->info.height, std::vector<int>(global_map->info.width, -1));
@@ -161,11 +201,12 @@ void AStarSearch(int startX, int startY, int goalX, int goalY, ros::Publisher& p
                 continue;
             }
 
-            float gCost = current.gCost + 1;
+            float obstacleProximityCost = 1000 / obstacleDistances[newY][newX];
+            float tentativeGCost = current.gCost + 1 + obstacleProximityCost;
 
             float hCost = heuristic(newX, newY, goalX, goalY);
 
-            openList.push(Node(newX, newY, gCost, hCost, current.x, current.y));
+            openList.push(Node(newX, newY, tentativeGCost, hCost, current.x, current.y));
 
             parentX[newY][newX] = current.x;
             parentY[newY][newX] = current.y;
