@@ -71,3 +71,45 @@ If the `openList` becomes empty and no path to the goal has been found, the algo
 In the project definition, it states that the cost of being in a cell closer to obstacles should be higher than other ones. This is done using the `computeObstacleDistances` function which starts from the obstacles and in a BFS fashion, assigns the distance of each empty cell to their closest obstacle.
 
 This is then used in the A* algorithm where instead of just adding a constant cost of 1 for each movement, we also add the inverse of the corresponding distance multiplied by a multiplier. This multiplier is there to make it more important than the constant 1 cost.
+
+## How to Run
+
+In order to run and test this project, you need 4 terminals. First you need to source all the terminals:
+
+```
+source devel/setup.bash
+```
+
+Then in the first terminal you need to start the master:
+
+```
+roscore
+```
+
+In the second terminal you need to start the `path_planner_node`:
+
+```
+rosrun path_planner path_planner_node
+```
+
+In the third terminal you need to start the `map_server`:
+
+```
+rosrun map_server map_server map.yaml
+```
+
+In the final terminal you need to start RViz:
+
+```
+rviz
+```
+
+In the RViz application, you need to add the used topics `/map`, `/initialpose`, `/move_base_simple/goal`, and `visualization_marker`. After adding the `/map` topic, you should see the map loaded on the screen. Here you can select `2D Pose Estimate` and `2D Nav Goal` and the select anywhere on the map to choose the initial and goal pose respectively.
+
+After that, the algorithm will run automatically and if any there is any path, it will appear on the map with a blue color.
+
+Some runs can be seen below:
+
+![Run Example](/images/rviz_screenshot_2024_09_11-21_01_26.png)
+![Run Example](/images/rviz_screenshot_2024_09_11-21_02_51.png)
+![Run Example](/images/rviz_screenshot_2024_09_11-21_04_05.png)
