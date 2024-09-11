@@ -5,6 +5,7 @@ path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o
  /home/hesan78/Documents/Simple-Planner/src/path_planner/src/path_planner_node.cpp
  /opt/ros/noetic/include/geometry_msgs/Point.h
  /opt/ros/noetic/include/geometry_msgs/Pose.h
+ /opt/ros/noetic/include/geometry_msgs/PoseStamped.h
  /opt/ros/noetic/include/geometry_msgs/PoseWithCovariance.h
  /opt/ros/noetic/include/geometry_msgs/PoseWithCovarianceStamped.h
  /opt/ros/noetic/include/geometry_msgs/Quaternion.h

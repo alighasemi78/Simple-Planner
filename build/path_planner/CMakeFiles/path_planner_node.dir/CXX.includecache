@@ -11,6 +11,8 @@ ros/ros.h
 -
 geometry_msgs/PoseWithCovarianceStamped.h
 -
+geometry_msgs/PoseStamped.h
+-
 
 /opt/ros/noetic/include/geometry_msgs/Point.h
 string
@@ -46,6 +48,26 @@ ros/message_operations.h
 geometry_msgs/Point.h
 -
 geometry_msgs/Quaternion.h
+-
+
+/opt/ros/noetic/include/geometry_msgs/PoseStamped.h
+string
+-
+vector
+-
+memory
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/Header.h
+-
+geometry_msgs/Pose.h
 -
 
 /opt/ros/noetic/include/geometry_msgs/PoseWithCovariance.h
