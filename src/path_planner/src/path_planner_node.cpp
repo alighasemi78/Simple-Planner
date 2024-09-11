@@ -1,6 +1,7 @@
 #include <ros/ros.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <geometry_msgs/PoseStamped.h>
+#include <nav_msgs/OccupancyGrid.h>
 
 void initPoseCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg)
 {
@@ -14,15 +15,22 @@ void goalPoseCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
     ROS_INFO("Received goal pose: x=%f, y=%f", pose.position.x, pose.position.y);
 }
 
+void mapCallback(const nav_msgs::OccupancyGrid::ConstPtr& map)
+{
+    ROS_INFO("Received Map from map_server, resolution: %lf", map->info.resolution);
+}
+
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "path_planner_node");
 
     ros::NodeHandle init_pose_nh;
     ros::NodeHandle goal_pose_nh;
+    ros::NodeHandle map_nh;
 
     ros::Subscriber init_pose_sub = init_pose_nh.subscribe("/initialpose", 1, initPoseCallback);
     ros::Subscriber goal_pose_sub = goal_pose_nh.subscribe("/move_base_simple/goal", 1, goalPoseCallback);
+    ros::Subscriber map_sub = map_nh.subscribe("/map", 1, mapCallback);
 
     ros::spin();
     return 0;

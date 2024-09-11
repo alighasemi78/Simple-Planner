@@ -8,6 +8,8 @@ path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o: /opt/
 path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o: /opt/ros/noetic/include/geometry_msgs/PoseWithCovariance.h
 path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o: /opt/ros/noetic/include/geometry_msgs/PoseWithCovarianceStamped.h
 path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o: /opt/ros/noetic/include/geometry_msgs/Quaternion.h
+path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o: /opt/ros/noetic/include/nav_msgs/MapMetaData.h
+path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o: /opt/ros/noetic/include/nav_msgs/OccupancyGrid.h
 path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o: /opt/ros/noetic/include/ros/advertise_options.h
 path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o: /opt/ros/noetic/include/ros/advertise_service_options.h
 path_planner/CMakeFiles/path_planner_node.dir/src/path_planner_node.cpp.o: /opt/ros/noetic/include/ros/assert.h

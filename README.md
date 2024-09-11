@@ -32,4 +32,4 @@ target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
 )
 ```
-In order to listen to the initial pose selected in RViz, we need a node handle to subscribe to the topic `/initialpose`. For the goal pose, we need another node handle to subscribe to the topic `/move_base_simple/goal`.
+In order to listen to the initial pose selected in RViz, we need a node handle to subscribe to the topic `/initialpose`. For the goal pose, we need another node handle to subscribe to the topic `/move_base_simple/goal`. For the map, we need another node handle to subscribe to the topic `/map`.
